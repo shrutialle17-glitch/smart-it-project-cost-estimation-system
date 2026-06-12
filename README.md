@@ -4,7 +4,7 @@ Smart IT Project Cost Estimation System  Project
 Team Members:
 - Shruti Alle
 - Samridhi Pandey
-- Arua Ghadigaonkar
+- Arya Ghadigaonkar
 
 Tech Stack:
 - React.js
