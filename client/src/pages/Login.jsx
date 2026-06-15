@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../hooks/useAuth';
 import { Eye, EyeOff, Mail, Lock, Zap } from 'lucide-react';
 import Button from '../components/common/Button';
 import toast from 'react-hot-toast';
@@ -10,6 +10,7 @@ const Login = () => {
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const validate = () => {
@@ -20,13 +21,17 @@ const Login = () => {
     return Object.keys(e).length === 0;
   };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-
-  if (!validate()) return;
-
-  toast.success("Login button clicked!");
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+    setLoading(true);
+    try {
+      const user = await login(form);
+      toast.success(`Welcome back, ${user.name}!`);
+      navigate(user.role === 'admin' ? '/admin' : '/dashboard');
+    } catch (err) { toast.error(err.response?.data?.message || 'Login failed'); }
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen flex">
