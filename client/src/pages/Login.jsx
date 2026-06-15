@@ -35,6 +35,17 @@ const Login = () => {
     setLoading(false);
   };
 
+  const { isAuthenticated, user } = useAuth();
+
+  if (isAuthenticated) {
+    return (
+      <Navigate
+        to={user?.role === 'admin' ? '/admin' : '/dashboard'}
+        replace
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen flex">
       <div className="hidden lg:flex lg:w-1/2 bg-navy-900 items-center justify-center p-12 relative overflow-hidden">
