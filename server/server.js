@@ -11,8 +11,9 @@ const app = express();
 const featureRoutes = require('./routes/featureRoutes');
 const projectTypeRoutes = require('./routes/projectTypeRoutes');
 const techStackRoutes = require('./routes/techStackRoutes');
-
+const notificationRoutes = require('./routes/notificationRoutes');
 const { seedDatabase } = require('./seed/seedData');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Middleware
 app.use(cors());
@@ -27,6 +28,8 @@ app.get("/", (req, res) => {
 app.use("/api/features", featureRoutes);
 app.use("/api/project-types", projectTypeRoutes);
 app.use("/api/tech-stacks", techStackRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
