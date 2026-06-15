@@ -1,11 +1,11 @@
 const express = require('express');
-//const { protect } = require('../middlewares/authMiddleware');
-//const { roleMiddleware } = require('../middlewares/roleMiddleware');
+const { protect } = require('../middlewares/authMiddleware');
+const { roleMiddleware } = require('../middlewares/roleMiddleware');
 const { getStats, getClients, getClient, getAllEstimations, updateEstimationStatus } = require('../controllers/adminController');
 
 const router = express.Router();
 
-//router.use(protect, roleMiddleware('admin'));
+router.use(protect, roleMiddleware('admin'));
 
 router.get('/stats', getStats);
 router.get('/clients', getClients);
