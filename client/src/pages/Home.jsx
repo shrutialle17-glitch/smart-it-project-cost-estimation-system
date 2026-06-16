@@ -43,13 +43,13 @@ const Home = () => {
   useEffect(() => { const t = setInterval(() => setActiveTestimonial(p => (p + 1) % testimonials.length), 5000); return () => clearInterval(t); }, []);
 
   return (
-    <div className="-mt-16">
+    <div  className="-mt-16">
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center bg-navy-900 overflow-hidden">
+      <section className="relative min-h-screen pt-16 flex items-center bg-navy-900 overflow-hidden">
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(99,102,241,0.3) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="absolute top-20 right-10 w-72 h-72 bg-indigo-500/20 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-8xl mx-auto px-8 lg:px-16 py-32 grid lg:grid-cols-2 gap-16 items-center">
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
               <Zap className="w-4 h-4 text-yellow-400" />
@@ -85,7 +85,7 @@ const Home = () => {
 
       {/* Features */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-navy-900 mb-4">Why SmartEstimate?</h2>
             <p className="text-gray-500 max-w-xl mx-auto">Everything you need to create accurate, professional IT project cost estimates.</p>
@@ -106,7 +106,7 @@ const Home = () => {
 
       {/* How It Works */}
       <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-navy-900 mb-4">How It Works</h2>
             <p className="text-gray-500">Four simple steps to your accurate project estimate.</p>
@@ -126,7 +126,7 @@ const Home = () => {
 
       {/* Stats */}
       <section className="py-16 bg-gradient-to-r from-indigo-600 to-indigo-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <AnimatedCounter end={500} label="Estimates Generated" />
             <AnimatedCounter end={50} label="Project Types" />
@@ -138,7 +138,7 @@ const Home = () => {
 
       {/* Testimonials */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-navy-900 mb-4">What Our Clients Say</h2>
           </div>

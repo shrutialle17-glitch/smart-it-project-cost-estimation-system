@@ -47,11 +47,12 @@ const featureSchema = new mongoose.Schema({
 });
 
 // Auto-generate slug from name before validation
-featureSchema.pre('validate', function (next) {
+featureSchema.pre('validate', function () {
   if (this.name && !this.slug) {
-    this.slug = this.name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/(^_|_$)/g, '');
+    this.slug = this.name.toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/(^_|_$)/g, '');
   }
-  next();
 });
 
 featureSchema.index({ category: 1 });
