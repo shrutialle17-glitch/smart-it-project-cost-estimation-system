@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { Eye, EyeOff, Mail, Lock, User, Building, Zap } from 'lucide-react';
 import Button from '../components/common/Button';
 import toast from 'react-hot-toast';
+import { Navigate } from 'react-router-dom';
 
 const Register = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '', company: '' });
@@ -36,6 +37,15 @@ const Register = () => {
     } catch (err) { toast.error(err.response?.data?.message || 'Registration failed'); }
     setLoading(false);
   };
+  const { isAuthenticated, user } = useAuth();
+  if (isAuthenticated) {
+  return (
+    <Navigate
+      to={user?.role === 'admin' ? '/admin' : '/dashboard'}
+      replace
+    />
+  );
+}
 
   return (
     <div className="min-h-screen flex">

@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { Eye, EyeOff, Mail, Lock, Zap } from "lucide-react";
 import Button from "../components/common/Button";
 import toast from "react-hot-toast";
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
