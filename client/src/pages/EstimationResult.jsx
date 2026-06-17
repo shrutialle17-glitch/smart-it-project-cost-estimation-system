@@ -84,7 +84,7 @@ const EstimationResult = () => {
 
       <div className="flex gap-4">
         <Button onClick={handleDownload} loading={downloading} className="flex-1"><Download className="w-5 h-5 mr-2" /> Download PDF</Button>
-        <Link to="/estimate/new" className="flex-1"><Button variant="secondary" className="w-full"><Plus className="w-5 h-5 mr-2" /> New Estimate</Button></Link>
+        <Link to="/create-estimation" className="flex-1"><Button variant="secondary" className="w-full"><Plus className="w-5 h-5 mr-2" /> New Estimate</Button></Link>
       </div>
     </div>
   );

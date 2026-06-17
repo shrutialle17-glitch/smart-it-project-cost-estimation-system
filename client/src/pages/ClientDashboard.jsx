@@ -29,12 +29,6 @@ const ClientDashboard = () => {
       try {
         const { data } = await getMyEstimations({ limit: 5 });
         setEstimations(data.data.estimations);
-        // Mock recent activity (replace with actual data)
-        setRecentActivity([
-          { type: 'created', label: 'New estimate created', time: '2 hours ago' },
-          { type: 'updated', label: 'Estimate #1234 updated', time: '5 hours ago' },
-          { type: 'shared', label: 'Estimate shared with client', time: '1 day ago' },
-        ]);
       } catch { /* ignore */ }
       setLoading(false);
     };
@@ -169,9 +163,9 @@ const ClientDashboard = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6">
           {/* Recent Estimations - Main */}
-          <div className="lg:col-span-2">
+          <div>
             <div className="card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100/50">
               <div className="px-6 py-5 border-b border-gray-100">
                 <div className="flex items-center justify-between">
@@ -208,34 +202,6 @@ const ClientDashboard = () => {
             </div>
           </div>
 
-          {/* Sidebar - Recent Activity & Quick Actions */}
-          <div className="space-y-6">
-            {/* Recent Activity */}
-            <div className="card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100/50">
-              <div className="px-6 py-5 border-b border-gray-100">
-                <div className="flex items-center gap-3">
-                  <div className="bg-gradient-to-br from-emerald-500 to-teal-600 p-2 rounded-xl">
-                    <Clock className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="font-heading font-semibold text-navy-800">Recent Activity</h3>
-                </div>
-              </div>
-              <div className="p-6 space-y-4">
-                {recentActivity.map((activity, idx) => (
-                  <div key={idx} className="flex items-start gap-3 group cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
-                    <div className="w-2 h-2 rounded-full bg-indigo-500 mt-2 group-hover:scale-125 transition-transform"></div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-navy-700">{activity.label}</p>
-                      <p className="text-xs text-gray-400">{activity.time}</p>
-                    </div>
-                  </div>
-                ))}
-                <button className="w-full text-center text-sm text-indigo-600 font-medium hover:text-indigo-700 py-2">
-                  View all activity
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Footer Note */}
