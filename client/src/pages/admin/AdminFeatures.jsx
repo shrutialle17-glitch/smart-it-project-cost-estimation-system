@@ -46,7 +46,7 @@ const AdminFeatures = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between mb-8">
         <div><h1 className="font-heading text-2xl font-bold text-navy-900">Features</h1><p className="text-gray-500 text-sm mt-1">{features.length} features</p></div>
         <Button onClick={() => { setEditFeature(null); setModalOpen(true); }}><Plus className="w-5 h-5 mr-2" /> Add Feature</Button>

@@ -1,24 +1,11 @@
-//const User = require('../models/User');
+const User = require('../models/User');
 const Estimation = require('../models/Estimation');
-//const { notifyClientStatusUpdate } = require('../services/notificationService');
+const { notifyClientStatusUpdate } = require('../services/notificationService');
 const { sendResponse } = require('../utils/sendResponse');
 
 const Feature = require('../models/Feature');
 
-const getStats = async (req, res) => {
-  const totalFeatures = await Feature.countDocuments();
 
-  res.json({
-    success: true,
-    data: {
-      totalFeatures,
-      totalClients: 0,
-      totalEstimations: 0
-    }
-  });
-};
-
-/*
 const getStats = async (req, res, next) => {
   try {
     const totalClients = await User.countDocuments({ role: 'client' });
@@ -52,6 +39,56 @@ const getStats = async (req, res, next) => {
       thisMonthEstimations, thisMonthClients, byProjectType, estimationsOverTime,
     });
   } catch (error) { next(error); }
+};
+
+
+/*
+const getStats = async (req, res, next) => {
+  try {
+    const totalFeatures = await Feature.countDocuments();
+    const totalClients = await User.countDocuments({ role: 'client' });
+    const totalEstimations = await Estimation.countDocuments();
+
+    const revenueAgg = await Estimation.aggregate([
+      {
+        $group: {
+          _id: null,
+          total: { $sum: '$calculation.totalCost' }
+        }
+      }
+    ]);
+
+    const totalRevenue =
+      revenueAgg.length > 0 ? revenueAgg[0].total : 0;
+
+    const startOfMonth = new Date();
+    startOfMonth.setDate(1);
+    startOfMonth.setHours(0, 0, 0, 0);
+
+    const thisMonthEstimations =
+      await Estimation.countDocuments({
+        createdAt: { $gte: startOfMonth }
+      });
+
+    const thisMonthClients =
+      await User.countDocuments({
+        role: 'client',
+        createdAt: { $gte: startOfMonth }
+      });
+
+    sendResponse(res, 200, 'Admin stats retrieved', {
+      totalFeatures,
+      totalClients,
+      totalEstimations,
+      totalRevenue,
+      thisMonthEstimations,
+      thisMonthClients,
+      byProjectType: [],
+      estimationsOverTime: []
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 */
 const getClients = async (req, res, next) => {
@@ -112,7 +149,7 @@ const updateEstimationStatus = async (req, res, next) => {
     }
     const estimation = await Estimation.findByIdAndUpdate(req.params.id, { status }, { new: true }).populate('client', 'name email');
     if (!estimation) return res.status(404).json({ success: false, message: 'Estimation not found' });
-    //await notifyClientStatusUpdate(estimation, status);
+    await notifyClientStatusUpdate(estimation, status);
     sendResponse(res, 200, 'Estimation status updated', { estimation });
   } catch (error) { next(error); }
 };

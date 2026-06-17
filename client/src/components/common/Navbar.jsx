@@ -47,7 +47,7 @@ const Navbar = () => {
             ) : (
               <>
                 <Link to={user?.role === 'admin' ? '/admin' : '/dashboard'} className={`text-sm font-medium ${textColor} hover:text-indigo-500 transition-colors`}>Dashboard</Link>
-                {user?.role === 'client' && <Link to="/estimate/new" className={`text-sm font-medium ${textColor} hover:text-indigo-500 transition-colors`}>New Estimate</Link>}
+                {user?.role === 'client' && <Link to="/create-estimation" className={`text-sm font-medium ${textColor} hover:text-indigo-500 transition-colors`}>New Estimate</Link>}
                 {user?.role === 'client' && <Link to="/estimations" className={`text-sm font-medium ${textColor} hover:text-indigo-500 transition-colors`}>History</Link>}
                 <NotificationBell />
                 <div className="relative">
@@ -92,7 +92,7 @@ const Navbar = () => {
             ) : (
               <div className="flex flex-col gap-3">
                 <Link to={user?.role === 'admin' ? '/admin' : '/dashboard'} className="text-sm font-medium text-navy-800 py-2">Dashboard</Link>
-                {user?.role === 'client' && <Link to="/estimate/new" className="text-sm font-medium text-navy-800 py-2">New Estimate</Link>}
+                {user?.role === 'client' && <Link to="/create-estimation" className="text-sm font-medium text-navy-800 py-2">New Estimate</Link>}
                 {user?.role === 'client' && <Link to="/estimations" className="text-sm font-medium text-navy-800 py-2">History</Link>}
                 <button onClick={handleLogout} className="text-sm font-medium text-red-600 py-2 text-left">Logout</button>
               </div>

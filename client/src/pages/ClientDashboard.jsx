@@ -1,18 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-//import { useAuth } from '../hooks/useAuth';
-//import { getMyEstimations } from '../api/estimationAPI';
+import { useAuth } from '../hooks/useAuth';
+import { getMyEstimations } from '../api/estimationAPI';
 import { formatCurrency } from '../utils/formatCurrency';
-//import EstimationTable from '../components/admin/EstimationTable';
-//import { Loader } from '../components/common/Loader';
+import EstimationTable from '../components/admin/EstimationTable';
+import { Loader } from '../components/common/Loader';
 import { Plus, FileText, DollarSign, TrendingUp, Calculator } from 'lucide-react';
 
 const ClientDashboard = () => {
-  //const { user } = useAuth();
-  const user = {
-  name: "Demo Client"
-};
-/*
+  const { user } = useAuth();
   const [estimations, setEstimations] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,39 +17,21 @@ const ClientDashboard = () => {
       try {
         const { data } = await getMyEstimations({ limit: 5 });
         setEstimations(data.data.estimations);
-      } catch { ignore  }
+      } catch { /* ignore */ }
       setLoading(false);
     };
     fetch();
   }, []);
-*/
-
-  const [estimations] = useState([
-  {
-    _id: "1",
-    projectName: "E-Commerce Website",
-    calculation: { totalCost: 50000 },
-    createdAt: new Date()
-  },
-  {
-    _id: "2",
-    projectName: "Hospital Management System",
-    calculation: { totalCost: 75000 },
-    createdAt: new Date()
-  }
-]);
-
-const loading = false;
 
   const totalValue = estimations.reduce((sum, e) => sum + (e.calculation?.totalCost || 0), 0);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Welcome */}
       <div className="card bg-gradient-to-r from-indigo-500 to-indigo-600 text-white mb-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div><h1 className="font-heading text-2xl font-bold">Welcome back, {user?.name}!</h1><p className="text-indigo-100 mt-1">Ready to create your next project estimate?</p></div>
-          <Link to="/create-estimation" className="inline-flex items-center gap-2 bg-white text-indigo-600 font-semibold px-6 py-3 rounded-xl hover:bg-indigo-50 transition-colors" ><Plus className="w-5 h-5" /> New Estimate</Link>
+          <Link to="/create-estimation" className="inline-flex items-center gap-2 bg-white text-indigo-600 font-semibold px-6 py-3 rounded-xl hover:bg-indigo-50 transition-colors"><Plus className="w-5 h-5" /> New Estimate</Link>
         </div>
       </div>
 
@@ -77,23 +55,7 @@ const loading = false;
       {/* Recent Estimations */}
       <div className="card">
         <div className="flex items-center justify-between mb-6"><h2 className="font-heading font-semibold text-lg text-navy-800">Recent Estimations</h2><Link to="/estimations" className="text-sm text-indigo-500 font-medium hover:text-indigo-600">View All →</Link></div>
-       /* loading */
-        <table className="w-full">
-  <thead>
-    <tr>
-      <th className="text-left">Project</th>
-      <th className="text-left">Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    {estimations.map((e) => (
-      <tr key={e._id}>
-        <td>{e.projectName}</td>
-        <td>{formatCurrency(e.calculation.totalCost)}</td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+        {loading ? <Loader /> : <EstimationTable estimations={estimations} onView={(id) => window.location.href = `/estimations/${id}`} />}
       </div>
     </div>
   );

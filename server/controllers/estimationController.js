@@ -1,6 +1,6 @@
 const Estimation = require('../models/Estimation');
 const { calculateEstimation } = require('../services/estimationEngine');
-//const { notifyAdminsNewEstimation } = require('../services/notificationService');
+const { notifyAdminsNewEstimation } = require('../services/notificationService');
 const { sendResponse } = require('../utils/sendResponse');
 
 /**
@@ -45,7 +45,7 @@ const save = async (req, res, next) => {
       status: 'saved',
     });
 
-    // Notify all admins
+    //Notify all admins
     await notifyAdminsNewEstimation(estimation, req.user);
 
     sendResponse(res, 201, 'Estimation saved successfully', { estimation });

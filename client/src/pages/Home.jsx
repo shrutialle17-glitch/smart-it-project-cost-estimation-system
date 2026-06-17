@@ -43,7 +43,7 @@ const Home = () => {
   useEffect(() => { const t = setInterval(() => setActiveTestimonial(p => (p + 1) % testimonials.length), 5000); return () => clearInterval(t); }, []);
 
   return (
-    <div  className="-mt-16">
+    <div  >
       {/* Hero */}
       <section className="relative min-h-screen pt-16 flex items-center bg-navy-900 overflow-hidden">
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(99,102,241,0.3) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
