@@ -56,7 +56,7 @@ const AdminDashboard = () => {
   if (loading) return <Loader text="Loading dashboard..." />;
   if (!stats) return <div className="text-center py-20 text-gray-500">Failed to load dashboard.</div>;
 
-  const pieData = stats.byProjectType?.map((p, i) => ({ name: p.projectTypeName || 'Unknown', value: p.count })) || [];
+  const pieData = stats.byProjectType?.map((p, i) => ({ name: p.name || 'Unknown', value: p.count })) || [];
 
   // Navigation items
   const navItems = [
@@ -192,7 +192,7 @@ const AdminDashboard = () => {
                   key={item.to}
                   to={item.to}
                   className={`
-                    flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group
+                    flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group relative
                     ${isActive(item.to, item.exact) 
                       ? 'bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 font-medium shadow-sm' 
                       : 'text-navy-600 hover:bg-gray-50 hover:text-navy-800'
@@ -489,15 +489,15 @@ const AdminDashboard = () => {
               </div>
             </div>
 
-            {/* Quick Links - Now integrated into sidebar, keeping for reference */}
-            <div className="lg:hidden relative">
+            {/* Quick Links - Keeping original section */}
+            <div className="relative">
               <div className="flex items-center gap-3 mb-4">
                 <div className="bg-gradient-to-br from-violet-500 to-purple-600 p-2 rounded-xl">
                   <Zap className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="font-heading font-semibold text-navy-800">Quick Access</h3>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {[
                   { to: '/admin/project-types', icon: Layers, label: 'Project Types', color: 'from-emerald-500 to-emerald-600', desc: 'Manage types' },
                   { to: '/admin/tech-stacks', icon: FileText, label: 'Tech Stacks', color: 'from-blue-500 to-blue-600', desc: 'Configure stacks' },
