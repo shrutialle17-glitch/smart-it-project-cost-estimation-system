@@ -34,14 +34,14 @@ const Navbar = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-emerald-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">SE</span>
             </div>
-            <span className={`font-heading font-bold text-lg ${textColor}`}>SmartEstimate</span>
+            <span className={`font-heading font-bold text-lg color-black`}>SmartEstimate</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
             {!isAuthenticated ? (
               <>
-                <Link to="/" className={`text-sm font-medium ${textColor} hover:text-indigo-500 transition-colors`}>Home</Link>
-                <Link to="/login" className={`text-sm font-medium ${textColor} hover:text-indigo-500 transition-colors`}>Login</Link>
+                <Link to="/" className={`text-sm font-medium color-black hover:text-indigo-500 transition-colors`}>Home</Link>
+                <Link to="/login" className={`text-sm font-medium color-black hover:text-indigo-500 transition-colors`}>Login</Link>
                 <Link to="/register" className="btn-primary text-sm !py-2 !px-5">Get Started</Link>
               </>
             ) : (
